@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+* {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.room_container {
+    border-style: solid;
+    border-color: rgb(197, 197, 197);
+    border-radius: 25px;
+    margin: 5% 40%;
+    min-width: 350px;
+    overflow: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.inside_container {
+    display: block;
+    padding: 5px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-height: 350px;
+    max-height: 500px;
 }
 
-.App-link {
-  color: #61dafb;
+.type_message {
+    display: block;
+    text-align: center;
+    padding: 2px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* .avatar {
+    border: 2px solid red;
+    border-radius: 25px;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+} */
+
+.sentMessage,
+.recievedMessage {
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    min-width: fit-content;
+    max-width: 300px;
+    border-radius: 25px;
+}
+
+.sentMessage {
+    background-color: rgb(234, 163, 139);
+    /* float: right; */
+    margin-left: 30%;
+}
+
+.recievedMessage {
+    background-color: rgb(249, 216, 176);
+    /* float: left; */
+    margin-right: 30%;
+}
+
+button {
+    cursor: pointer;
+    border-radius: 40px;
+    border-width: 0;
+    padding: 5px 20px 5px 20px;
+    margin: 10px;
+    background-color: rgb(211, 135, 110);
+    font-size: medium;
+}
+
+input {
+    border-radius: 40px;
+    border-width: 1px;
+    border-color: darkslategrey;
+    padding: 10px 15px 10px 15px;
+    font-size: 90%;
+}
+
+@media (max-width: 1300px) {
+    .room_container {
+        margin: 5% 30%;
+    }
+}
+
+@media (max-width: 768px) {
+    .room_container {
+        margin: 5% 5%;
+    }
+}
+
+@media (max-width: 864px) {
+    .room_container {
+        margin: 5% 20%;
+    }
+}
+
+@media (max-width: 476px) {
+    .room_container {
+        margin: 5%;
+    }
+}
+
+@media (max-width: 310px) {
+    .room_container {
+        margin: 0;
+    }
 }
