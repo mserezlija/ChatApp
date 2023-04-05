@@ -1,19 +1,32 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 
+const drone = new window.Scaledrone("BoauderdP5qY5ge6");
+
 function App() {
     const [message, setMessage] = useState([]);
     const [inputMessage, setInputMessage] = useState("");
 
     useEffect(() => {
-        const drone = new window.Scaledrone("BoauderdP5qY5ge6");
-        drone.on("open", () => {
-            const room = drone.subscribe("my-room");
-            // console.log("Connected to room");
-            room.on("message", (message) => {
-                setMessage([...message, message]);
-                console.log(message);
-            });
+        drone.on("open", (error) => {
+            if (error) {
+                return console.error(error);
+            }
+        });
+
+        const room = drone.subscribe("chat");
+
+        room.on("open", (error) => {
+            if (error) {
+                return console.error(error);
+            }
+        });
+
+        room.on("message", (message) => {
+            if (message.clientId !== drone.clientId) {
+                setMessage((prevMessages) => [...prevMessages, message.data]);
+            }
+            // console.log(message);
         });
     }, []);
 
@@ -24,26 +37,38 @@ function App() {
         }
         const newMessage = {
             text: inputMessage,
+            myId: drone.clientId,
         };
 
-        setMessage([...message, newMessage]);
-        setInputMessage("");
+        drone.publish({
+            room: "chat",
+            message: newMessage,
+        });
 
-        console.log("Message sent:", newMessage);
+        setMessage((prevMessages) => [...prevMessages, newMessage]);
+
+        const emptyInput = (document.getElementById("myInput").value = "");
+        setInputMessage(emptyInput);
     };
 
     return (
         <div className="room_container">
-            <div className="inside_container">
+            <div className="showMessages">
                 {message.map((message) => (
-                    <div className="sentMessage">{message.text}</div>
+                    <div
+                        className={
+                            message.myId === drone.clientId
+                                ? "sentMessage"
+                                : "receivedMessage"
+                        }
+                    >
+                        {message.text}
+                    </div>
                 ))}
-                <div className="recievedMessage">tekst poruke </div>
             </div>
             <div className="type_message">
                 <input
                     id="myInput"
-                    required
                     type="text"
                     placeholder="Write your new message..."
                     onChange={(e) => setInputMessage(e.target.value)}
