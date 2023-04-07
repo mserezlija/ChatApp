@@ -1,5 +1,6 @@
-import "./App.css";
 import { useState, useEffect } from "react";
+import ShowMessages from "./components/ShowMessages";
+import InputMessages from "./components/InputMessages";
 
 const drone = new window.Scaledrone("BoauderdP5qY5ge6");
 
@@ -35,6 +36,7 @@ function App() {
             alert("Can't send an empty message!");
             return;
         }
+
         const newMessage = {
             text: inputMessage,
             myId: drone.clientId,
@@ -53,30 +55,12 @@ function App() {
 
     return (
         <div className="room_container">
-            <div className="showMessages">
-                {message.map((message) => (
-                    <div
-                        className={
-                            message.myId === drone.clientId
-                                ? "sentMessage"
-                                : "receivedMessage"
-                        }
-                    >
-                        {message.text}
-                    </div>
-                ))}
-            </div>
-            <div className="type_message">
-                <input
-                    id="myInput"
-                    type="text"
-                    placeholder="Write your new message..."
-                    onChange={(e) => setInputMessage(e.target.value)}
-                ></input>
-                <button type="submit" onClick={sendMessage}>
-                    Send
-                </button>
-            </div>
+            <ShowMessages message={message} drone={drone} />
+            <InputMessages
+                inputMessage={inputMessage}
+                setInputMessage={setInputMessage}
+                sendMessage={sendMessage}
+            />
         </div>
     );
 }

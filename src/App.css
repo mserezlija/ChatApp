@@ -20,7 +20,7 @@ body {
     display: block;
     padding: 5px;
     min-height: 350px;
-    max-height: 500px;
+    max-height: 400px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -44,13 +44,11 @@ body {
 
 .sentMessage {
     background-color: rgb(234, 163, 139);
-    /* float: right; */
     margin-left: 40%;
 }
 
 .receivedMessage {
     background-color: rgb(249, 216, 176);
-    /* float: left; */
     margin-right: 40%;
 }
 
