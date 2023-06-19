@@ -1,3 +1,7 @@
+# Project Disclaimer
+
+## All projects included in this repository were created by me. Unless otherwise specified, I am the sole author and owner of the code, design, and content. These projects represent my skills, expertise, and personal work.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
